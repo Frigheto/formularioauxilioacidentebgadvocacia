@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bianchi e Gonçalves - Auxílio-Acidente</title>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2221592708377684');fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2221592708377684&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem 1rem;
+            border-bottom: 2px solid #C9A84C;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #C9A84C;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            font-weight: 400;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: #d0d0d0;
+        }
+
+        .progress-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C9A84C 0%, #d4b859 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .container {
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .question-number {
+            color: #C9A84C;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            color: #e8e8e8;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-option {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #444;
+            color: #d0d0d0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-option:hover {
+            border-color: #C9A84C;
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .btn-option.selected {
+            background: #C9A84C;
+            border-color: #C9A84C;
+            color: #000;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn-secondary {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            color: #d0d0d0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #C9A84C;
+            color: #C9A84C;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #C9A84C 0%, #d4b859 100%);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+            color: #e8e8e8;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #f5f5f5;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #C9A84C;
+            background: rgba(201, 168, 76, 0.05);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+
+        input[type="text"]::placeholder,
+        input[type="tel"]::placeholder {
+            color: #888;
+        }
+
+        .privacy-notice {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .privacy-notice a {
+            color: #C9A84C;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-notice a:hover {
+            color: #d4b859;
+            text-decoration: underline;
+        }
+
+        .result-message {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .result-message.show {
+            display: block;
+        }
+
+        .result-qualified {
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid #C9A84C;
+            color: #C9A84C;
+        }
+
+        .result-not-qualified {
+            background: rgba(220, 100, 100, 0.15);
+            border: 1px solid #dc6464;
+            color: #ff9999;
+        }
+
+        .whatsapp-section {
+            display: none;
+        }
+
+        .whatsapp-section.show {
+            display: block;
+        }
+
+        .whatsapp-info {
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid #C9A84C;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                min-height: 280px;
+            }
+
+            .navigation {
+                flex-direction: row;
+            }
+
+            .btn-secondary,
+            .btn-primary {
+                flex: 1;
+            }
+
+            .whatsapp-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bianchi e Gonçalves</div>
+        <div class="logo-subtitle">Advogados Associados</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Verifique seu direito ao Auxílio-Acidente</h1>
+            <p class="hero-subtitle">Se você sofreu um acidente, ficou com sequela e tinha vínculo com o INSS na época, pode ter direito a um benefício mensal vitalício. Responda 3 perguntas rápidas.</p>
+        </section>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Pergunta 0 de 3</div>
+        </div>
+
+        <div class="container">
+            <!-- Pergunta 1 -->
+            <div class="form-section active" data-section="1">
+                <div class="question-number">PERGUNTA 1 DE 3</div>
+                <div class="question-text">Quando você sofreu o acidente (acidente de trabalho, queda, acidente de trânsito, entre outros), estava trabalhando com carteira assinada há pelo menos 6 meses?</div>
+                <div class="button-group">
+                    <button type="button" class="btn-option" data-question="q1" data-qualify="true">Sim</button>
+                    <button type="button" class="btn-option" data-question="q1" data-qualify="false">Não</button>
+                </div>
+            </div>
+
+            <!-- Pergunta 2 -->
+            <div class="form-section" data-section="2">
+                <div class="question-number">PERGUNTA 2 DE 3</div>
+                <div class="question-text">Ficou com alguma sequela ou lesão definitiva que atrapalha sua vida cotidiana ou seu trabalho atual?</div>
+                <div class="button-group">
+                    <button type="button" class="btn-option" data-question="q2" data-qualify="true">Sim</button>
+                    <button type="button" class="btn-option" data-question="q2" data-qualify="false">Não</button>
+                </div>
+            </div>
+
+            <!-- Pergunta 3 -->
+            <div class="form-section" data-section="3">
+                <div class="question-number">PERGUNTA 3 DE 3</div>
+                <div class="question-text">Consegue comprovar a ocorrência do acidente e a existência da sequela/lesão definitiva? Possui documentos da época do acidente?</div>
+                <div class="button-group">
+                    <button type="button" class="btn-option" data-question="q3" data-qualify="true">Sim</button>
+                    <button type="button" class="btn-option" data-question="q3" data-qualify="false">Não</button>
+                </div>
+            </div>
+
+            <!-- Dados finais -->
+            <div class="form-section" data-section="4">
+                <div class="question-number">DADOS DE CONTATO</div>
+                <div class="question-text">Agora nos deixe seus dados para contato</div>
+
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Número de WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+                </div>
+
+                <div class="privacy-notice">
+                    Suas informações serão usadas exclusivamente para verificar seu direito ao benefício e entrar em contato pelo WhatsApp.
+                    <a href="https://advocaciabg.com.br/" target="_blank">Saiba mais sobre nossa privacidade</a>.
+                </div>
+            </div>
+
+            <!-- Resultado -->
+            <div class="form-section" data-section="5">
+                <div id="resultMessage" class="result-message"></div>
+                <div class="whatsapp-section" id="whatsappSection">
+                    <div class="whatsapp-info">
+                        <p style="margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 600;">Recebemos suas informações!</p>
+                        <p style="margin-bottom: 1rem;">Nossa equipe vai entrar em contato pelo WhatsApp em breve para verificar seu direito ao Auxílio-Acidente.</p>
+                        <a href="https://wa.me/554931913242?text=Olá, preenchi o formulário sobre Auxílio-Acidente e gostaria de verificar meu direito." target="_blank" class="whatsapp-link">
+                            <span>💬</span>
+                            <span>Falar com a equipe</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navegação -->
+            <div class="navigation">
+                <button type="button" class="btn-secondary" id="btnBack">← Voltar</button>
+                <button type="button" class="btn-primary" id="btnNext">Próximo →</button>
+                <button type="button" class="btn-primary" id="btnSend" style="display: none;">Enviar</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Bianchi e Gonçalves Advogados Associados. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 5;
+
+        const answers = {
+            q1: null,
+            q2: null,
+            q3: null
+        };
+
+        const qualifyingAnswers = {
+            q1: true,  // Sim
+            q2: true,  // Sim
+            q3: true   // Sim
+        };
+
+        const optionButtons = document.querySelectorAll('.btn-option');
+        const sections = document.querySelectorAll('.form-section');
+        const btnBack = document.getElementById('btnBack');
+        const btnNext = document.getElementById('btnNext');
+        const btnSend = document.getElementById('btnSend');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const resultMessage = document.getElementById('resultMessage');
+        const whatsappSection = document.getElementById('whatsappSection');
+
+        optionButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const question = button.dataset.question;
+                const qualify = button.dataset.qualify === 'true';
+
+                // Remove selected state from all buttons in this section
+                document.querySelectorAll(`[data-question="${question}"]`).forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Add selected state to clicked button
+                button.classList.add('selected');
+
+                // Store answer
+                answers[question] = qualify;
+
+                // Enable next button
+                btnNext.disabled = false;
+
+                updateProgress();
+            });
+        });
+
+        function goToSection(sectionNumber) {
+            if (sectionNumber < 1 || sectionNumber > totalSections) return;
+
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show current section
+            document.querySelector(`[data-section="${sectionNumber}"]`).classList.add('active');
+
+            currentSection = sectionNumber;
+            updateProgress();
+            updateButtons();
+        }
+
+        function updateProgress() {
+            const percentage = (currentSection / totalSections) * 100;
+            progressFill.style.width = percentage + '%';
+
+            if (currentSection <= 3) {
+                progressText.textContent = `Pergunta ${currentSection} de 3`;
+            } else if (currentSection === 4) {
+                progressText.textContent = `Seus dados`;
+            } else {
+                progressText.textContent = `Resultado`;
+            }
+        }
+
+        function updateButtons() {
+            // Back button
+            btnBack.disabled = currentSection === 1;
+
+            // Next button visibility
+            if (currentSection === 4) {
+                // Show send button when on data section
+                btnNext.style.display = 'none';
+                btnSend.style.display = 'block';
+                btnSend.disabled = !nameInput.value.trim() || !phoneInput.value.trim();
+            } else if (currentSection === 5) {
+                // Hide buttons on result
+                btnNext.style.display = 'none';
+                btnSend.style.display = 'none';
+                btnBack.style.display = 'none';
+            } else {
+                // Show next button on question sections
+                btnNext.style.display = 'block';
+                btnSend.style.display = 'none';
+                btnNext.disabled = answers[`q${currentSection}`] === null;
+            }
+        }
+
+        function validateData() {
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            if (!name || !phone) {
+                alert('Por favor, preencha todos os campos');
+                return false;
+            }
+
+            return true;
+        }
+
+        function isQualified() {
+            return (
+                answers.q1 === qualifyingAnswers.q1 &&
+                answers.q2 === qualifyingAnswers.q2 &&
+                answers.q3 === qualifyingAnswers.q3
+            );
+        }
+
+        function showResult() {
+            const qualified = isQualified();
+
+            if (qualified) {
+                resultMessage.classList.add('show', 'result-qualified');
+                resultMessage.textContent = '✓ Parabéns! Você pode ter direito ao Auxílio-Acidente!';
+            } else {
+                resultMessage.classList.add('show', 'result-not-qualified');
+                resultMessage.textContent = 'Vamos analisar sua situação! Entre em contato conosco para uma avaliação detalhada.';
+            }
+
+            whatsappSection.classList.add('show');
+            goToSection(5);
+        }
+
+        btnBack.addEventListener('click', () => {
+            goToSection(currentSection - 1);
+        });
+
+        btnNext.addEventListener('click', () => {
+            goToSection(currentSection + 1);
+        });
+
+        btnSend.addEventListener('click', () => {
+            if (validateData()) {
+                showResult();
+            }
+        });
+
+        nameInput.addEventListener('input', () => {
+            if (currentSection === 4) {
+                btnSend.disabled = !nameInput.value.trim() || !phoneInput.value.trim();
+            }
+        });
+
+        phoneInput.addEventListener('input', () => {
+            if (currentSection === 4) {
+                btnSend.disabled = !nameInput.value.trim() || !phoneInput.value.trim();
+            }
+        });
+
+        // Event listener for WhatsApp button - trigger Meta Pixel Lead event
+        const whatsappLink = document.querySelector('.whatsapp-link');
+        if (whatsappLink) {
+            whatsappLink.addEventListener('click', (e) => {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead');
+                }
+            });
+        }
+
+        // Initialize
+        updateProgress();
+        updateButtons();
+    </script>
+</body>
+</html>
